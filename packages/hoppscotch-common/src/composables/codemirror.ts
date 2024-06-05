@@ -11,6 +11,7 @@ import {
   EditorState,
   Compartment,
   EditorSelection,
+  Prec,
 } from "@codemirror/state"
 import {
   Language,
@@ -371,6 +372,15 @@ export function useCodemirror(
           run: indentLess,
         },
       ]),
+      Prec.highest(
+        keymap.of([
+          {
+            key: "Ctrl-Enter",
+            preventDefault: true,
+            run: () => true,
+          },
+        ])
+      ),
       tooltips({
         parent: document.body,
         position: "absolute",
